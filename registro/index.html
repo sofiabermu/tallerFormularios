@@ -10,9 +10,6 @@
   <main>
     <h1>Crear cuenta</h1>
 
-    <!-- novalidate: las reglas viven en validaciones.js y los mensajes los muestra app.js.
-         En el HTML solo quedan los atributos que dan semántica o el teclado correcto:
-         type, required (los lectores de pantalla anuncian «obligatorio»), autocomplete e inputmode. -->
     <form id="registro" action="https://jsonplaceholder.typicode.com/posts" method="post" novalidate>
       <div class="campo">
         <label for="nombre">Nombre completo</label>
@@ -71,7 +68,7 @@
 
       <fieldset class="telefonos">
         <legend>Teléfonos (opcional)</legend>
-        <!-- app.js agrega aquí hasta 3 filas con name="telefono" -->
+        <!-- app.js agrega hasta 3 filas con name=telefono -->
         <div id="telefonos"></div>
         <button type="button" id="agregar-telefono" class="secundario"
                 aria-describedby="telefonos-ayuda">Agregar teléfono</button>
@@ -91,10 +88,10 @@
       <p id="mensaje" role="status"></p>
     </form>
 
-    <!-- Saludo tras el registro: app.js lo llena con textContent (nunca innerHTML) -->
+    <!-- saludo despues del registro y app.js lo llena con textContent -->
     <p id="saludo" class="saludo"></p>
   </main>
-  <!-- type="module" permite usar import; requiere abrir la página con Live Server -->
+  <!-- type=module permite usar import,  se tiene que abrir la pagina con Live Server -->
   <script type="module" src="app.js"></script>
 </body>
 </html>

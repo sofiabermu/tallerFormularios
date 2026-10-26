@@ -2,7 +2,7 @@
 
 ## Nivel 1 · HTML puro
 
-# ¿Qué pasa si borras el atributo `name` de un campo y envías?
+#### ¿Qué pasa si borras el atributo `name` de un campo y envías?
 
 Cuando se prueba, el campo simplemente no se envía. El navegador lo sigue validando (si es obligatorio y está vacío no se deja enviar), pero en DevTools › Red ese dato no aparece en la petición.
 
@@ -12,7 +12,7 @@ La razón es que el formulario arma lo que envía con parejas `name=valor`. El `
 
 ## Nivel 2 · Mensajes propios
 
-# ¿`:user-invalid` o `:invalid`?
+#### ¿`:user-invalid` o `:invalid`?
 
 Cuando se cambia `:user-invalid` por `:invalid` y se recarga, todos los campos obligatorios aparecieron en rojo inmediatamente, sin haber escrito nada. Eso pasa porque `:invalid` muestra el estado real del campo todo el tiempo, y un campo obligatorio vacío ya es inválido desde que carga la página.
 
@@ -22,11 +22,11 @@ Con `:user-invalid` el rojo solo aparece después de que la persona toca el camp
 
 ## Nivel 3 · Envío con fetch
 
-## ¿Por qué se escucha `submit` en el formulario y no `click` en el botón?
+#### ¿Por qué se escucha `submit` en el formulario y no `click` en el botón?
 
 Porque no siempre se envía con un clic. Si se está escribiendo en un campo y se oprime **Enter**, el formulario se envía sin que nadie toque el botón. Si solo escuchara el `click`, ese envío se escaparía. El navegador haría el envío normal y la página se recargaría. El evento `submit` salta siempre que el formulario se envía, sin importar cómo, y ahí es donde `e.preventDefault()` evita la recarga.
 
-### Prueba con la URL rota
+#### Prueba con la URL rota
 
 Cuando se cambia la URL por `https://jsonplaceholder.typicode.com/no-existe`. El servidor responde 404, pero `fetch` no lo toma como error (solo falla cuando no hay red), por eso hay que revisar `res.ok`. Con eso el usuario ve el mensaje: el servidor no pudo crear la cuenta (HTTP 404). Inténtalo de nuevo en unos minutos, y en la consola queda el `Error: HTTP 404`. Con DevTools en modo *Offline* el mensaje cambia a: No se pudo enviar. Revisa tu conexión e inténtalo de nuevo. En los dos casos el botón vuelve a activarse y los datos siguen escritos.
 
@@ -34,7 +34,7 @@ Cuando se cambia la URL por `https://jsonplaceholder.typicode.com/no-existe`. El
 
 ## Nivel 4 · Validación en JavaScript
 
-## ¿Qué ventaja tiene que las reglas sean funciones puras?
+#### ¿Qué ventaja tiene que las reglas sean funciones puras?
 
 Que no dependen de nada más que de lo que reciben, no tocan el DOM ni la red. Con los mismos datos siempre dan el mismo resultado. En la práctica eso sirve para:
 
@@ -42,7 +42,7 @@ Que no dependen de nada más que de lo que reciben, no tocan el DOM ni la red. C
 - Reutilizarlas en otro lado, incluso en el backend.
 - Tener las reglas en un solo lugar. Si se quiere cambiar una, se cambie en `validaciones.js` y no hay que buscarla por todo el código.
 
-### ¿Por qué «el correo ya existe» no se puede validar solo con HTML?
+#### ¿Por qué «el correo ya existe» no se puede validar solo con HTML?
 
 Porque los atributos de HTML solo miran el valor del campo y lo revisan ahí mismo, en el navegador. Para saber si un correo ya tiene cuenta hay que preguntarle al servidor, que es el que tiene la lista de usuarios, y esa respuesta tarda en llegar. Ningún atributo puede hacer una petición ni esperar una respuesta, así que eso solo se puede hacer con JavaScript.
 
